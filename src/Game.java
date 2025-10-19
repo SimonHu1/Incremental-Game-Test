@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
+
 public class Game extends JFrame
 {
     private Gameplay gameplay;
-    public Game()
-    {
+    public Game(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setPreferredSize(new Dimension(1920,1080));
