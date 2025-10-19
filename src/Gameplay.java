@@ -58,7 +58,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         {
             ticks = 0;
             statArray[0] += 1;
-            statDisplay.setText(statArray[0]+"");
+            statDisplay.setText("$"+statArray[0]);
         }
 
         //Used to debug and test tickspeed
