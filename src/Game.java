@@ -8,9 +8,14 @@ public class Game extends JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1920,1080);
         setPreferredSize(new Dimension(1920,1080));
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
         setResizable(true);
         gameplay = new Gameplay();
-        add()
+        add(gameplay);
+        gameplay.setVisible(true);
+        gameplay.setBounds(0,0,getWidth(),getHeight());
+        pack();
+        setVisible(true);
     }
 }
