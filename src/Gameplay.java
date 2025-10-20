@@ -94,12 +94,20 @@ public class Gameplay extends JLayeredPane implements ActionListener{
             while ((line = br.readLine()) != null) {
                 line = line.trim();
                 String[] item = line.split(",");
-                itemList.add(new Item(item[0],item[1],Integer.parseInt(item[2]),Integer.parseInt(item[3]),Integer.parseInt(item[4])));
+                itemList.add(new Item(item[0],item[1],Integer.parseInt(item[2]),Integer.parseInt(item[3]),Integer.parseInt(item[4]),0,Integer.parseInt(item[5])));
             }
             br.close();
         }
         catch (IOException e) {
             System.out.println("Error opening upgrade ID file");
         }
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public int[] getStatArray() {
+        return statArray;
     }
 }
