@@ -1,1 +1,2 @@
-itemName,itemDescription,itemID,itemBasePrice,itemScalingID
+itemName,itemDescription,itemCurrency,itemID,itemBasePrice,itemScalingID
+First Upgrade,The Very First Upgrade In The Game,0,0,5,1
