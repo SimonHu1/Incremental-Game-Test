@@ -48,11 +48,14 @@ public class Upgrade extends JLabel {
     {
         //use switch and case for this later
         if(scalingID == 0) {
-            //2^n - 1 and then subtract 2^z
+            //(n)(n+1)/2 and then subtract (z)(z+1)/2
             //where n is purchasedAmountToIncrement + purchasedAmount
             //and where z is the purchasedAmount
-            int totalPurchaseCost = itemBasePrice*(int)(Math.pow(2,purchasedAmount+purchasedAmountToIncrement)-Math.pow(2,purchasedAmount));
+            int n = purchasedAmountToIncrement + purchasedAmount;
+            int totalPurchaseCost = itemBasePrice*((n*(n+1)/2)-(purchasedAmount*(purchasedAmount+1)/2));
             if(gameplay.getStatArray()[itemCurrency]>=totalPurchaseCost) {
+                gameplay.setStatArray(itemCurrency, gameplay.getStatArray()[itemCurrency]-totalPurchaseCost);
+                purchasedAmount += purchasedAmountToIncrement;
                 //decrement statArray and adjust the purchased amount and new item price accordingly
             }
         }
