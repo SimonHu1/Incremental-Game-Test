@@ -110,4 +110,8 @@ public class Gameplay extends JLayeredPane implements ActionListener{
     public int[] getStatArray() {
         return statArray;
     }
+
+    public void setStatArray(int index, int value) {
+        statArray[index] = value;
+    }
 }
