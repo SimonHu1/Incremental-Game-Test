@@ -33,14 +33,14 @@ public class Upgrade extends JLabel {
             itemPrice = linearScaling;
         }
         if(scalingID == 1) {
-            itemPrice = linearScaling*(int)(Math.log(purchasedAmount));
+            itemPrice = (int)(linearScaling*(Math.log(purchasedAmount+10)));
         }
         if(scalingID == 2) {
-            double logBase2 = Math.log(purchasedAmount)/Math.log(2);
-            itemPrice = linearScaling*(int)(logBase2);
+            double logBase2 = Math.log(purchasedAmount+1)/Math.log(2);
+            itemPrice = (int)(linearScaling*(logBase2));
         }
         if(scalingID == 3) {
-            itemPrice = itemBasePrice*(int)Math.pow(purchasedAmount+1.0,2.0);
+            itemPrice = (int)(itemBasePrice*Math.pow(purchasedAmount+1.0,2.0));
         }
     }
 
