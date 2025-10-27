@@ -46,12 +46,12 @@ public class Upgrade extends JLabel {
 
     public void tryPurchase(int purchasedAmountToIncrement)
     {
+        int n = purchasedAmountToIncrement + purchasedAmount;
         //use switch and case for this later
         if(scalingID == 0) {
             //(n)(n+1)/2 and then subtract (z)(z+1)/2
             //where n is purchasedAmountToIncrement + purchasedAmount
             //and where z is the purchasedAmount
-            int n = purchasedAmountToIncrement + purchasedAmount;
             int totalPurchaseCost = itemBasePrice*((n*(n+1)/2)-(purchasedAmount*(purchasedAmount+1)/2));
             if(gameplay.getStatArray()[itemCurrency]>=totalPurchaseCost) {
                 gameplay.setStatArray(itemCurrency, gameplay.getStatArray()[itemCurrency]-totalPurchaseCost);
@@ -60,13 +60,39 @@ public class Upgrade extends JLabel {
             }
         }
         if(scalingID == 1) {
-
+            int totalPurchaseCost = itemBasePrice*(int)triangleSummation(purchasedAmount,n+1,10);
+            if(gameplay.getStatArray()[itemCurrency]>=totalPurchaseCost) {
+                gameplay.setStatArray(itemCurrency, gameplay.getStatArray()[itemCurrency]-totalPurchaseCost);
+                purchasedAmount += purchasedAmountToIncrement;
+                //decrement statArray and adjust the purchased amount and new item price accordingly
+            }
         }
         if(scalingID == 2) {
-
+            int totalPurchaseCost = itemBasePrice*(int)triangleSummation(purchasedAmount,n+1,2);
+            if(gameplay.getStatArray()[itemCurrency]>=totalPurchaseCost) {
+                gameplay.setStatArray(itemCurrency, gameplay.getStatArray()[itemCurrency]-totalPurchaseCost);
+                purchasedAmount += purchasedAmountToIncrement;
+                //decrement statArray and adjust the purchased amount and new item price accordingly
+            }
         }
         if(scalingID == 3) {
-
+            int totalPurchaseCost = itemBasePrice*((n*(n+1)*(2*n+1)/6)-(purchasedAmount*(purchasedAmount+1)*(2*purchasedAmount+1)/6));
+            if(gameplay.getStatArray()[itemCurrency]>=totalPurchaseCost) {
+                gameplay.setStatArray(itemCurrency, gameplay.getStatArray()[itemCurrency]-totalPurchaseCost);
+                purchasedAmount += purchasedAmountToIncrement;
+                //decrement statArray and adjust the purchased amount and new item price accordingly
+            }
         }
+    }
+
+    public double triangleSummation(int boundOne, int boundTwo, int logBase)
+    {
+        double funcOneB1 = (boundOne + 1.0)*Math.log(boundOne+10.0)/Math.log(logBase);
+        double funcOneB2 = (boundTwo + 1.0)*Math.log(boundTwo+10.0)/Math.log(logBase);
+        double funcTwoB1 = 0.5*(boundOne*boundOne + 2*boundOne - 80.0)*Math.log(boundOne+10.0) - 0.25*(boundOne*boundOne) + 4.0*boundOne;
+        double funcTwoB2 = 0.5*(boundTwo*boundTwo + 2*boundTwo - 80.0)*Math.log(boundTwo+10.0) - 0.25*(boundTwo*boundTwo) + 4.0*boundTwo;
+        double integralPart = (funcTwoB2 - funcTwoB1)/Math.log(logBase);
+        double trapezoid = 0.5*(funcOneB1+funcOneB2);
+        return integralPart + trapezoid;
     }
 }
