@@ -20,6 +20,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
     private Timer timer;
     long lastTime = System.nanoTime();
     private JTextField statDisplay = new JTextField();
+    private JTextField tickDisplay = new JTextField();
     public Gameplay()
     {
 
@@ -37,6 +38,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
             }
         });
         initializeStats();
+        initializeTickDisplay();
         loadItems();
     }
 
@@ -63,6 +65,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         lastTime = now;
 
         ticks += timeDiff * 100;
+        tickDisplay.setText("" + (int)ticks);
         if(ticks>99.9)
         {
             ticks = 0;
@@ -76,7 +79,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
 
     public void initializeStats()
     {
-        statDisplay.setText(statArray[0]+"");
+        statDisplay.setText("$"+statArray[0]);
         statDisplay.setFont(new Font("Times New Roman", Font.BOLD, 20));
         statDisplay.setForeground(Color.GREEN);
         statDisplay.setHorizontalAlignment(JLabel.CENTER);
@@ -85,6 +88,19 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         statDisplay.setVisible(true);
         statDisplay.setBackground(Color.BLACK);
         add(statDisplay);
+    }
+
+    public void initializeTickDisplay()
+    {
+        tickDisplay.setText(ticks+"");
+        tickDisplay.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        tickDisplay.setForeground(Color.WHITE);
+        tickDisplay.setHorizontalAlignment(JLabel.CENTER);
+        tickDisplay.setBounds(0,980,100,30);
+        tickDisplay.setEditable(false);
+        tickDisplay.setVisible(true);
+        tickDisplay.setBackground(Color.BLACK);
+        add(tickDisplay);
     }
 
     public void loadItems() {
