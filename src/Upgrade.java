@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.Scanner;
 
@@ -24,6 +25,29 @@ public class Upgrade extends JLabel {
         purchasedAmount = thisItem.getPurchasedAmount();
         scalingID = thisItem.getItemScalingID();
         upgradePrice.setText("Placeholder");
+        initializeUpgrade(upgradeID);
+    }
+
+    public void initializeUpgrade(int upgradeID)
+    {
+        //add a ? button for info
+        LayoutManager FlowLayout = new FlowLayout();
+        setBackground(Color.white);
+        setLayout(FlowLayout);
+        setOpaque(true);
+        add(buyButton);
+        add(upgradeName);
+        add(upgradeDescription);
+        buyButton.setFont(new Font("Monospaced", Font.BOLD, 20));
+        upgradeName.setFont(new Font("Monospaced", Font.BOLD, 20));
+        upgradeDescription.setFont(new Font("Monospaced", Font.BOLD, 20));
+        upgradeName.setEditable(false);
+        upgradeDescription.setEditable(false);
+        upgradeDescription.setBounds(0,0,100,100);
+        upgradeDescription.setForeground(Color.white);
+        upgradeDescription.setBackground(Color.BLUE);
+        upgradeDescription.setText("Description");
+        upgradeDescription.setVisible(true);
     }
 
     public void calculateItemPrice() {

@@ -1,5 +1,9 @@
 import javax.swing.*;
 
 public class ShopPage extends JLabel {
-    public ShopPage() {}
+    private Upgrade upgradeSlotOne;
+    private Upgrade upgradeSlotTwo;
+    public ShopPage() {
+
+    }
 }

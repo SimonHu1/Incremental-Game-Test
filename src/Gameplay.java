@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Gameplay extends JLayeredPane implements ActionListener{
     //0 = coins
-    private String upgradeIDPath = "upgradeData.csv";
+    private String upgradeIDPath = "src/upgradeData.csv";
     private int[] statArray = new int[5];
     private List<Item> itemList = new ArrayList<Item>();
     private double ticks = 0.0;
@@ -77,6 +77,14 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         //statDisplay.setText(statArray[0]+" & "+(int)ticks);
     }
 
+    public void initializeShop()
+    {
+        Upgrade upgradeTest = new Upgrade(this, 0);
+        upgradeTest.setBounds(500,500,300,300);
+        add(upgradeTest);
+        System.out.println("Upgrade Test");
+    }
+
     public void initializeStats()
     {
         statDisplay.setText("$"+statArray[0]);
@@ -107,9 +115,16 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         try {
             BufferedReader br = new BufferedReader(new FileReader(upgradeIDPath));
             String line;
+            Boolean firstLine = true;
             while ((line = br.readLine()) != null) {
+                if(firstLine)
+                {
+                    firstLine = false;
+                    continue;
+                }
                 line = line.trim();
                 String[] item = line.split(",");
+                System.out.println(item[2]);
                 itemList.add(new Item(item[0],item[1],Integer.parseInt(item[2]),Integer.parseInt(item[3]),Integer.parseInt(item[4]),0,Integer.parseInt(item[5])));
             }
             br.close();
@@ -117,6 +132,7 @@ public class Gameplay extends JLayeredPane implements ActionListener{
         catch (IOException e) {
             System.out.println("Error opening upgrade ID file");
         }
+        initializeShop();
     }
 
     public List<Item> getItemList() {
